@@ -19,4 +19,35 @@ public class Item {
     private int price;
     private int stockQuantity;
     private String imgUrl;
+
+    // 연관 관계 변수들.
+    
+
+    //== 연관관계 편이 양방향 메소드 ==//
+    
+    
+    //==비즈니스 로직==// 
+    // 주문 -> 스택감소 , 주문취소 -> 스택 그만큼 추가
+    public void removeStock(int quantity) throws Exception{
+        if(stockQuantity < quantity){
+            throw new Exception("not enough stock");
+        }
+        stockQuantity-=quantity;
+    }
+    public void addStock(int quantity){
+        stockQuantity+=quantity;
+    }
+
+
+    //== 생성 메서드 ==//
+    
+
+    //== 비즈니스 로직 메서드 ==//
+    
+    
+
+
+
+    //== 조회 로직 ==//
+    
 }
