@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -35,7 +36,7 @@ public class Order {
     @JoinColumn(name = "member_id") //FK = Member테이블의 member_id
     private Member member;
 
-    @OneToMany(mappedBy = "orderItem")
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<OrderItem> orderItems = new ArrayList<OrderItem>();
 
     //== 연관관계 편이 양방향 메소드 ==//

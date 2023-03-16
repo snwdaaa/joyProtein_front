@@ -17,7 +17,7 @@ import lombok.Setter;
 @Setter
 public class OrderItem {
     @Id @GeneratedValue
-    @Column(name = "order_id")
+    @Column(name = "orderItem_id")
     private Long id;
 
     private int price;
