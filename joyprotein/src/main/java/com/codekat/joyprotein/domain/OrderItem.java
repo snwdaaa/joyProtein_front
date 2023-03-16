@@ -34,12 +34,16 @@ public class OrderItem {
 
     //== 생성 메서드 ==//
     public void createOrderItem(Item item, int quantity, int price){
-        
+        this.item = item;
+        this.quantity = quantity;
+        this.price = price;
     }
 
-
+    public void cancle(){
+        item.addStock(this.quantity);
+    }
 
     //== 연관 관계 메서드 ==//
-
+    
     
 }

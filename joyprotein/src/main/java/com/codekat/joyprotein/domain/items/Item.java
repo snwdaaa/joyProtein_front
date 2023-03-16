@@ -37,17 +37,6 @@ public class Item {
     public void addStock(int quantity){
         stockQuantity+=quantity;
     }
-
-
-    //== 생성 메서드 ==//
     
 
-    //== 비즈니스 로직 메서드 ==//
-    
-    
-
-
-
-    //== 조회 로직 ==//
-    
 }

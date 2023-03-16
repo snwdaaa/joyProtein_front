@@ -48,12 +48,23 @@ public class Order {
         this.member = member;
         member.getOrders().add(this);
     }
-    // public addOrderItem(Order)
+    public void addOrderItem(OrderItem orderItem){
+        this.orderItems.add(orderItem);
+    }
     
 
     //== 생성 메서드 ==//
-    public static void createOrder() {
-        
+    public static Order createOrder(Member member, OrderItem...orderItems) {
+        Order order = new Order();
+        order.setMember(member);
+        order.setOrderTime(LocalDateTime.now());
+        order.setOrderStatus(OrderStatus.ORDER);
+        for (OrderItem orderItem : orderItems) {
+            order.addOrderItem(orderItem);
+        }
+        order.setCost(order.getTotalPrice());
+        return order;
+
     }
 
     //== 비즈니스 로직 메서드 ==//
@@ -61,14 +72,21 @@ public class Order {
      * 주문 취소
      */
     public void cancle() {
-        
+        this.orderStatus = OrderStatus.CANCLE;
+        for (OrderItem orderItem : this.orderItems) {
+            orderItem.cancle();
+        }
     }
 
 
 
     //== 조회 로직 ==//
     public int getTotalPrice() {
-        return 0;
+        int cost = 0;
+        for (OrderItem orderItem : orderItems) {
+            cost+=orderItem.getPrice();
+        }
+        return cost;
     }
 
 }
