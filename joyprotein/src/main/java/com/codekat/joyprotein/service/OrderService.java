@@ -9,6 +9,7 @@ import com.codekat.joyprotein.domain.*;
 import com.codekat.joyprotein.domain.items.Item;
 import com.codekat.joyprotein.repository.ItemRepository;
 import com.codekat.joyprotein.repository.MemberRepository;
+import com.codekat.joyprotein.repository.OrderItemRepository;
 import com.codekat.joyprotein.repository.OrderRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -20,13 +21,14 @@ public class OrderService {
     private final OrderRepository orderRepository;
     private final ItemRepository itemRepository;
     private final MemberRepository memberRepository;
+    private final OrderItemRepository orderItemRepository;
 
     @Transactional
     public Long orderItem(Long memberId, Long ItemId, int count) throws Exception{ //  주문 상품이 한개일때만 함.
         Member member = memberRepository.findOne(memberId);
         Item item = itemRepository.findOne(ItemId);
-        OrderItem orderItem = new OrderItem();
-        OrderItem.createOrderItem(item, count, item.getPrice()); // undo
+        OrderItem orderItem = OrderItem.createOrderItem(item, count, item.getPrice()); // undo
+        orderItemRepository.save(orderItem);
         Order order = Order.createOrder(member, orderItem);
         orderRepository.save(order);
         return order.getId();

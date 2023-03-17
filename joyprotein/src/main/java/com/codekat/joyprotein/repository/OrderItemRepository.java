@@ -12,6 +12,10 @@ public class OrderItemRepository {
     @PersistenceContext
     private EntityManager em;
 
+    public void save(OrderItem orderItem){
+        em.persist(orderItem);
+    }
+
     public void remove(OrderItem orderItem){
         em.remove(orderItem);
     }

@@ -55,14 +55,12 @@ public class Order {
     
 
     //== 생성 메서드 ==//
-    public static Order createOrder(Member member, OrderItem...orderItems) {
+    public static Order createOrder(Member member, OrderItem orderItem) {
         Order order = new Order();
         order.setMember(member);
         order.setOrderTime(LocalDateTime.now());
         order.setOrderStatus(OrderStatus.ORDER);
-        for (OrderItem orderItem : orderItems) {
-            order.addOrderItem(orderItem);
-        }
+        order.addOrderItem(orderItem);
         order.setCost(order.getTotalPrice());
         return order;
     }
