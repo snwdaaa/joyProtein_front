@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.codekat.joyprotein.domain.Cart;
 import com.codekat.joyprotein.domain.Member;
 import com.codekat.joyprotein.repository.MemberRepository;
 
@@ -21,6 +22,8 @@ public class MemberService {
     public Long join(Member member) {
         validateOrverlapMember(member);
         memberRepository.save(member);
+        Cart cart = new Cart();
+        member.setCart(cart);
         return member.getId();
     }
 

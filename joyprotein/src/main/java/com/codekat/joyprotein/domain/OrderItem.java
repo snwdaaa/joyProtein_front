@@ -32,11 +32,18 @@ public class OrderItem {
     @JoinColumn(name = "item_id")
     private Item item;
 
+    @ManyToOne
+    @JoinColumn(name = "cart_id")
+    private Cart cart;
+
     //== 생성 메서드 ==//
-    public void createOrderItem(Item item, int quantity, int price){
-        this.item = item;
-        this.quantity = quantity;
-        this.price = price;
+    public static OrderItem createOrderItem(Item item, int quantity, int price) throws Exception{
+        OrderItem orderItem = new OrderItem();
+        orderItem.item = item;
+        orderItem.quantity = quantity;
+        orderItem.price = price;
+        item.removeStock(quantity);
+        return orderItem;
     }
 
     public void cancle(){

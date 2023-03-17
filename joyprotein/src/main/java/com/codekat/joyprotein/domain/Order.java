@@ -50,6 +50,7 @@ public class Order {
     }
     public void addOrderItem(OrderItem orderItem){
         this.orderItems.add(orderItem);
+        orderItem.setOrder(this);
     }
     
 
@@ -64,7 +65,18 @@ public class Order {
         }
         order.setCost(order.getTotalPrice());
         return order;
+    }
 
+    public static Order createOrder(Member member, List<OrderItem> orderItems) {
+        Order order = new Order();
+        order.setMember(member);
+        order.setOrderTime(LocalDateTime.now());
+        order.setOrderStatus(OrderStatus.ORDER);
+        for (OrderItem orderItem : orderItems) {
+            order.addOrderItem(orderItem);
+        }
+        order.setCost(order.getTotalPrice());
+        return order;
     }
 
     //== 비즈니스 로직 메서드 ==//
