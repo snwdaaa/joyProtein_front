@@ -24,9 +24,12 @@ public class OrderService {
     private final OrderItemRepository orderItemRepository;
 
     @Transactional
-    public Long orderItem(Long memberId, Long ItemId, int count) throws Exception{ //  주문 상품이 한개일때만 함.
+    public Long orderItem(Long memberId, Long itemId, int count) throws Exception{ //  주문 상품이 한개일때만 함.
         Member member = memberRepository.findOne(memberId);
-        Item item = itemRepository.findOne(ItemId);
+        Item item = itemRepository.findOne(itemId);
+        if (item == null) {
+        throw new IllegalArgumentException("Item does not exist with id: " + itemId);
+        }
         OrderItem orderItem = OrderItem.createOrderItem(item, count, item.getPrice()); // undo
         orderItemRepository.save(orderItem);
         Order order = Order.createOrder(member, orderItem);

@@ -94,7 +94,7 @@ public class Order {
     public int getTotalPrice() {
         int cost = 0;
         for (OrderItem orderItem : orderItems) {
-            cost+=orderItem.getPrice();
+            cost+=orderItem.getPrice() * orderItem.getQuantity();
         }
         return cost;
     }

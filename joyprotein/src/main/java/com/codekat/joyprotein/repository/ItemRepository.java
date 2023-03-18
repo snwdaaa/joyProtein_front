@@ -14,8 +14,9 @@ public class ItemRepository {
     @PersistenceContext
     private EntityManager em;
 
-    public void save(Item item){
+    public Long save(Item item){
         em.persist(item);
+        return item.getId();
     }
 
     public Item findOne(Long id){

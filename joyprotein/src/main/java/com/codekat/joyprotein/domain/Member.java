@@ -1,5 +1,6 @@
 package com.codekat.joyprotein.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -29,8 +30,8 @@ public class Member {
 
     // 연관관계 변수들
     @OneToMany(mappedBy = "member")
-    private List<Order> orders;
+    private List<Order> orders = new ArrayList<Order>();
 
     @OneToOne(mappedBy = "member",cascade = CascadeType.ALL)
-    private Cart cart;
+    private Cart cart = new Cart();
 }
