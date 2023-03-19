@@ -3,6 +3,7 @@ package com.codekat.joyprotein.domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -26,7 +27,7 @@ public class Cart {
     @JoinColumn(name = "member_id")
     private Member member;
 
-    @OneToMany(mappedBy = "cart")
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "cart")
     private List<OrderItem> orderItems = new ArrayList<OrderItem>();
 
     //== 양방향 매소드==//
@@ -35,6 +36,4 @@ public class Cart {
         orderItem.setCart(this);
     }
     
-    
-
 }

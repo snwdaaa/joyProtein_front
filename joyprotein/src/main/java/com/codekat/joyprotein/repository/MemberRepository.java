@@ -7,6 +7,7 @@ import javax.persistence.PersistenceContext;
 
 import org.springframework.stereotype.Repository;
 
+import com.codekat.joyprotein.controller.MemberViewDTO;
 import com.codekat.joyprotein.domain.Member;
 
 @Repository
@@ -35,5 +36,13 @@ public class MemberRepository {
         return em.find(Member.class, id);
     }
 
+    public List<Member> findAll(){
+        return em.createQuery("select m from Member m",Member.class).getResultList();
+    }
+
+    public List<MemberViewDTO> findAllIdName(){
+        List<MemberViewDTO> results = em.createQuery("select new MemberViewDTO(m.id, m.name) from Member m",MemberViewDTO.class).getResultList();
+        return results;
+    }
 
 }

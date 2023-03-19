@@ -4,35 +4,12 @@
     <h1 class="text-center mb-4">Protein Supplements</h1>
     <div class="row">
         <!-- Product 1 -->
-        <div class="col-lg-4 col-md-6 mb-4">
+        <div class="col-lg-4 col-md-6 mb-4" th:each="item : ${items}">
             <div class="card">
-                <img src="https://images.myprotein.com/images/products/myprotein-clear-whey-isolate/12139133-1193839211228619.jpg"
-                     alt="Product 1" class="card-img-top">
+                <img th:src="${item.imgUrl}" th:alt="${item.name}" class="card-img-top">
                 <div class="card-body">
-                    <h5 class="card-title">Clear Whey Isolate</h5>
-                    <p class="card-text">Refreshing and fruity, this clear protein drink is packed with 20g of protein and comes in a range of delicious flavours.</p>
-                    <a href="#" class="btn btn-primary">Learn More</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card">
-                <img src="https://images.myprotein.com/images/products/myprotein-clear-whey-isolate/12139133-1193839211228619.jpg"
-                     alt="Product 1" class="card-img-top">
-                <div class="card-body">
-                    <h5 class="card-title">Clear Whey Isolate</h5>
-                    <p class="card-text">Refreshing and fruity, this clear protein drink is packed with 20g of protein and comes in a range of delicious flavours.</p>
-                    <a href="#" class="btn btn-primary">Learn More</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card">
-                <img src="https://images.myprotein.com/images/products/myprotein-clear-whey-isolate/12139133-1193839211228619.jpg"
-                     alt="Product 1" class="card-img-top">
-                <div class="card-body">
-                    <h5 class="card-title">Clear Whey Isolate</h5>
-                    <p class="card-text">Refreshing and fruity, this clear protein drink is packed with 20g of protein and comes in a range of delicious flavours.</p>
+                    <h5 class="card-title" th:text="${item.name}"></h5>
+                    <p class="card-text" th:text="${item.description}"></p>
                     <a href="#" class="btn btn-primary">Learn More</a>
                 </div>
             </div>

@@ -19,6 +19,7 @@ public class Item {
     private int price;
     private int stockQuantity;
     private String imgUrl;
+    private String description;
 
     // 연관 관계 변수들.
     

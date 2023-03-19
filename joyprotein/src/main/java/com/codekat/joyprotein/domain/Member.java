@@ -9,6 +9,7 @@ import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -33,5 +34,11 @@ public class Member {
     private List<Order> orders = new ArrayList<Order>();
 
     @OneToOne(mappedBy = "member",cascade = CascadeType.ALL)
-    private Cart cart = new Cart();
+    @JoinColumn(name = "cart_id")
+    private Cart cart;
+
+    public void setCart(Cart cart){
+        this.cart = cart;
+        cart.setMember(this);
+    }
 }

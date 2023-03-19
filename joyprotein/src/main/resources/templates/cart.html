@@ -1,0 +1,33 @@
+<head th:replace="fragments/header :: header" />
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  $(function() {
+    $('#memberSelect').on('change', function() {
+      $('#memberForm').submit();
+    });
+  });
+</script>
+<div class="container">
+    <div th:replace="fragments/bodyHeader :: bodyHeader" />
+    <h1>장바구니</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>상품명</th>
+                <th>이미지</th>
+                <th>가격</th>
+                <th>수량</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="item : ${items}">
+                <td th:text="${item.name}"></td>
+                <td><img th:src="${item.imgUrl}" width="50" height="50" /></td>
+                <td th:text="${item.price}"></td>
+                <td th:text="${item.quantity}"></td>
+            </tr>
+        </tbody>
+    </table>
+    <a href="/cart/order" class="btn btn-primary">주문하기</a>
+    <div th:replace="fragments/footer :: footer" />
+</div>

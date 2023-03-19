@@ -17,9 +17,9 @@ public class OrderItemService {
     private final OrderItemRepository orderItemRepository;
     private final MemberRepository memberRepository;
 
-    public void addItemToCart(Long memberId, Long OrderItemId){
-        Cart cart = memberRepository.findOne(OrderItemId).getCart();
-        OrderItem orderItem = orderItemRepository.findOne(OrderItemId);
+    public void addItemToCart(Long memberId, OrderItem orderItem){
+        Cart cart = memberRepository.findOne(memberId).getCart();
+        // OrderItem orderItem = orderItemRepository.findOne(OrderItemId);
         cart.addOrderItem(orderItem);
     }
 
