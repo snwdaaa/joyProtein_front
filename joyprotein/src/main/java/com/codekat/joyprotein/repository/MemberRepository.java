@@ -4,9 +4,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-
 import org.springframework.stereotype.Repository;
-
 import com.codekat.joyprotein.controller.MemberViewDTO;
 import com.codekat.joyprotein.domain.Member;
 
@@ -44,5 +42,12 @@ public class MemberRepository {
         List<MemberViewDTO> results = em.createQuery("select new MemberViewDTO(m.id, m.name) from Member m",MemberViewDTO.class).getResultList();
         return results;
     }
+
+    
+    // public void emptyCart(Member member){
+    //     Cart cart = member.getCart();
+    //     em.createQuery("DELETE FROM OrderItem orderItem WHERE orderItem.cart = :cart")
+    //         .setParameter("cart", cart);
+    // }
 
 }

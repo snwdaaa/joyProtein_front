@@ -10,7 +10,7 @@
                 <div class="card-body">
                     <h5 class="card-title" th:text="${item.name}"></h5>
                     <p class="card-text" th:text="${item.description}"></p>
-                    <a href="#" class="btn btn-primary">Learn More</a>
+                    <a th:href="@{/protein/buy(id=${item.id})}" class="btn btn-primary">Learn More</a>
                 </div>
             </div>
         </div>

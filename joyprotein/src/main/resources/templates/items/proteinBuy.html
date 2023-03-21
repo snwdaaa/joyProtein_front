@@ -1,0 +1,53 @@
+<head th:replace="fragments/header :: header" />
+<div class="container">
+    <div th:replace="fragments/bodyHeader :: bodyHeader" />
+    <form method="post">
+        <div class="row">
+            <div class="col-md-6">
+                <img th:src="${protein.imgUrl}" alt="protein Image" class="img-fluid">
+            </div>
+            <div class="col-md-6">
+                <h2 th:text="${protein.name}"></h2>
+                <p th:text="${protein.description}"></p>
+                <p>protein ID: <input name="id" th:value="${protein.id}" ></span></p>
+
+                <div class="form-group">
+                    <label for="quantity">수량 선택</label>
+                    <input type="number" id="quantity" name="quantity" min="1" value="1" class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label for="weight">Weight</label>
+                    <select id="weight" name="weight" class="form-control">
+                        <option value="500">500g</option>
+                        <option value="1000">1kg</option>
+                        <option value="2500">2.5kg</option>
+                        <option value="5000">5kg</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="flavor">맛 선택</label>
+                    <select id="flavor" name="tasteCode" class="form-control">
+                        <option value="1111111">Chocolate</option>
+                        <option value="2222222">Vanilla</option>
+                        <option value="3333333">Strawberry</option>
+                        <option value="4444444">Banana</option>
+                    </select>
+                </div>
+                <button type="button" class="btn btn-primary" onclick="addToCart()">장바구니에 담기</button>
+                <button type="button" class="btn btn-success" onclick="order()">주문하기</button>
+            </div>
+        </div>
+    </form>
+    <div th:replace="fragments/footer :: footer" />
+</div>
+<script type="text/javascript">
+    function addToCart() {
+        $('form').attr('action', '/cart/add').submit();
+    }
+
+    function order() {
+        $('form').attr('action', '/protein/order').submit();
+    }
+</script>

@@ -1,5 +1,6 @@
 package com.codekat.joyprotein.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -47,6 +48,8 @@ public class OrderService {
         }
         Order order = Order.createOrder(member, orderItems);
         orderRepository.save(order);
+        orderItems.forEach(orderItem -> orderItem.setCart(null));
+        cart.setOrderItems(new ArrayList<OrderItem>());
         return order.getId();
     }
 

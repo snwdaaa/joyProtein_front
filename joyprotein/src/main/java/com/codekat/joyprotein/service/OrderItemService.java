@@ -5,6 +5,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.codekat.joyprotein.domain.Cart;
 import com.codekat.joyprotein.domain.OrderItem;
+import com.codekat.joyprotein.domain.items.Item;
 import com.codekat.joyprotein.repository.MemberRepository;
 import com.codekat.joyprotein.repository.OrderItemRepository;
 
@@ -17,9 +18,10 @@ public class OrderItemService {
     private final OrderItemRepository orderItemRepository;
     private final MemberRepository memberRepository;
 
-    public void addItemToCart(Long memberId, OrderItem orderItem){
+    public void addItemToCart(Long memberId, Item item, int count) throws Exception{
         Cart cart = memberRepository.findOne(memberId).getCart();
-        // OrderItem orderItem = orderItemRepository.findOne(OrderItemId);
+        OrderItem orderItem = OrderItem.createOrderItem(item, count, item.getPrice());
+        orderItemRepository.save(orderItem);
         cart.addOrderItem(orderItem);
     }
 

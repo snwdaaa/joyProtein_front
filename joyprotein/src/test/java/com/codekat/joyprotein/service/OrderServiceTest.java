@@ -12,6 +12,7 @@ import com.codekat.joyprotein.domain.*;
 import com.codekat.joyprotein.domain.items.*;
 import com.codekat.joyprotein.repository.ItemRepository;
 import com.codekat.joyprotein.repository.MemberRepository;
+import com.codekat.joyprotein.repository.OrderItemRepository;
 import com.codekat.joyprotein.repository.OrderRepository;
 
 
@@ -22,6 +23,7 @@ public class OrderServiceTest {
     @Autowired private OrderRepository orderRepository;
     @Autowired private ItemRepository itemRepository;
     @Autowired private MemberRepository memberRepository;
+    @Autowired private OrderItemRepository orderItemRepository;
 
     @Test
     public void 상품주문() throws Exception {
@@ -47,6 +49,7 @@ public class OrderServiceTest {
     public void 장바구니_상품_일괄주문() throws Exception{
         // given
         Member member = createMember("test@mm.com");
+        member.setCart(new Cart());
         Long memberId = memberRepository.save(member);
         Cart cart = member.getCart();
         Protein item1 = createProtein("test protein");
@@ -57,6 +60,9 @@ public class OrderServiceTest {
         //장바구니에 담기
         OrderItem orderItem1 = OrderItem.createOrderItem(item1, 10, item1.getPrice());
         OrderItem orderItem2 = OrderItem.createOrderItem(item2, 20, item1.getPrice());
+        orderItemRepository.save(orderItem1);
+        orderItemRepository.save(orderItem2);
+
         cart.addOrderItem(orderItem1);
         cart.addOrderItem(orderItem2);
 

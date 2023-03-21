@@ -1,0 +1,24 @@
+<head th:replace="fragments/header :: header" />
+<div class="container">
+    <div th:replace="fragments/bodyHeader :: bodyHeader" />
+    <h2>주문 현황</h2>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>주문번호</th>
+            <th>주문상태</th>
+            <th>총 가격</th>
+            <th>주문시각</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="order : ${orders}">
+            <td th:text="${order.id}"></td>
+            <td th:text="${order.orderStatus}"></td>
+            <td th:text="${order.cost}"></td>
+            <td th:text="${order.orderTime}"></td>
+        </tr>
+        </tbody>
+    </table>
+    <div th:replace="fragments/footer :: footer" />
+</div>

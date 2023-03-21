@@ -74,8 +74,8 @@ public class TestController {
         OrderItem orderItem1 = OrderItem.createOrderItem(protein1, 30, protein1.getPrice());
         OrderItem orderItem2 = OrderItem.createOrderItem(protein2, 300, protein2.getPrice());
 
-        orderItemService.addItemToCart(memberId, orderItem1);
-        orderItemService.addItemToCart(memberId, orderItem2);
+        orderItemService.addItemToCart(memberId, protein1,30);
+        orderItemService.addItemToCart(memberId, protein2,300);
 
         return "redirect:/";
     }
