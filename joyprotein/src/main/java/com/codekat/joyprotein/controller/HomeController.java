@@ -1,6 +1,5 @@
 package com.codekat.joyprotein.controller;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpSession;
 

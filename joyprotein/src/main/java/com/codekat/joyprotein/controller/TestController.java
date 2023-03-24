@@ -50,21 +50,21 @@ public class TestController {
 
         // Protein 객체 생성
         Protein protein1 = new Protein();
-        protein1.setName("Protein Powder");
+        protein1.getProduct().setName("Impact Whey Protein");
         protein1.setPrice(70000);
         protein1.setStockQuantity(10000000);
         protein1.setWeight(2500);
-        protein1.setImgUrl("https://static.thcdn.com/images/large/webp//productimg/1600/1600/11571206-1224790440293489.jpg");
-        protein1.setDescription("Refreshing and fruity, this clear protein drink is packed with 20g of protein and comes in a range of delicious flavours.");
+        protein1.getProduct().setImgUrl("https://static.thcdn.com/images/large/webp//productimg/1600/1600/11571206-1224790440293489.jpg");
+        protein1.getProduct().setDescription("Refreshing and fruity, this clear protein drink is packed with 20g of protein and comes in a range of delicious flavours.");
         System.out.println(protein1.getStockQuantity());
 
         Protein protein2 = new Protein();
-        protein2.setName("Vitamin protein");
+        protein2.getProduct().setName("Impact Whey ISOLATE");
         protein2.setPrice(30000);
         protein2.setStockQuantity(1000000);
-        protein2.setWeight(1000);
-        protein2.setImgUrl("https://static.thcdn.com/images/large/original//productimg/1600/1600/12525919-1504811124879147.jpg");
-        protein2.setDescription("Refreshing and fruity, this clear protein drink is packed with 20g of protein and comes in a range of delicious flavours.");
+        protein2.setWeight(2500);
+        protein2.getProduct().setImgUrl("https://static.thcdn.com/images/large/original//productimg/1600/1600/12525919-1504811124879147.jpg");
+        protein2.getProduct().setDescription("Refreshing and fruity, this clear protein drink is packed with 20g of protein and comes in a range of delicious flavours.");
         System.out.println(protein2.getStockQuantity());
 
         Long itemId2 = itemService.saveItem(protein2);

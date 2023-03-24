@@ -10,16 +10,16 @@ import lombok.*;
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE) // 상속 구현 전략 선택
 @DiscriminatorColumn(name = "dtype")
-public class Item {
+public class Item{
     @Id @GeneratedValue
     @Column(name = "item_id")
     private Long id;
-
-    private String name;
     private int price;
     private int stockQuantity;
-    private String imgUrl;
-    private String description;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "product_id")
+    private Product product = new Product();
 
     // 연관 관계 변수들.
     
@@ -38,6 +38,4 @@ public class Item {
     public void addStock(int quantity){
         stockQuantity+=quantity;
     }
-    
-
 }

@@ -10,7 +10,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @DiscriminatorValue("snack") // 구분짓는 칼럼(속성)값
-public class Snack extends Item{
+public class Snack extends Item {
     private int quantity;
     private String tasteCode;
 }

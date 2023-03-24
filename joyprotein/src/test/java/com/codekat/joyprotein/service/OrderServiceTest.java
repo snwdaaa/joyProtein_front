@@ -87,10 +87,10 @@ public class OrderServiceTest {
 
     private Protein createProtein(String name){
         Protein protein = new Protein();
-        protein.setImgUrl("test_url");
+        protein.getProduct().setImgUrl("test_url");
         protein.setPrice(10000);
         protein.setStockQuantity(10000);
-        protein.setName(name);
+        protein.getProduct().setName(name);
         protein.setWeight(2500);
         protein.setTasteCode("111111");
         return protein;

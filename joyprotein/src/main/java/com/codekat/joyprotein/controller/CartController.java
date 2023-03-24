@@ -9,10 +9,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.codekat.joyprotein.domain.*;
+import com.codekat.joyprotein.domain.items.Item;
 import com.codekat.joyprotein.domain.items.Protein;
 import com.codekat.joyprotein.service.ItemService;
 import com.codekat.joyprotein.service.MemberService;
@@ -33,7 +33,7 @@ public class CartController {
         Member member = memberService.findOne(memberId);
         System.out.println("sql memberId = " + member.getId());
         List<CartItemDTO> cartItems = member.getCart().getOrderItems().stream()
-        .map(orderItem -> new CartItemDTO(orderItem.getId(),orderItem.getItem().getName(),orderItem.getItem().getImgUrl(), orderItem.getItem().getPrice(), orderItem.getQuantity()))
+        .map(orderItem -> new CartItemDTO(orderItem.getId(),orderItem.getItem().getProduct().getName(),orderItem.getItem().getProduct().getImgUrl(), orderItem.getItem().getPrice(), orderItem.getQuantity()))
         .collect(Collectors.toList());
         model.addAttribute("items", cartItems);
         return "cart";
@@ -46,9 +46,9 @@ public class CartController {
     }
 
     @PostMapping("/cart/add")
-    public String addProteinToCart(ProteinOrderDTO proteinDTO) throws Exception{
-        Protein item = (Protein) itemService.findOne(proteinDTO.getId());
-        orderItemService.addItemToCart(1L, item, proteinDTO.getQuantity());
+    public String addProteinToCart(@ModelAttribute("memberId") Long memberId, ProteinOrderDTO proteinDTO) throws Exception{
+        Item item = itemService.takeProtein(proteinDTO.getId(), proteinDTO.getWeight(), proteinDTO.getTastCode());
+        orderItemService.addItemToCart(memberId, item, proteinDTO.getQuantity());
         return "redirect:/cart";
     }
 }

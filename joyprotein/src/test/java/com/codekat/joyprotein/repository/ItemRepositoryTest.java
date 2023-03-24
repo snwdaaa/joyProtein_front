@@ -21,17 +21,17 @@ public class ItemRepositoryTest {
     public void 아이템_저장() {
         // given
         Item item = new Item();
-        item.setName("Protein Bar");
+        item.getProduct().setName("Protein Bar");
         item.setPrice(2000);
         item.setStockQuantity(50);
-        item.setImgUrl("https://www.example.com/proteinbar");
+        item.getProduct().setImgUrl("https://www.example.com/proteinbar");
         
         // when
         itemRepository.save(item);
         
         // then
         Item savedItem = itemRepository.findOne(item.getId());
-        assertThat(savedItem.getName()).isEqualTo("Protein Bar");
+        assertThat(savedItem.getProduct().getName()).isEqualTo("Protein Bar");
         assertThat(savedItem).isEqualTo(item);
     }
 
@@ -40,18 +40,20 @@ public class ItemRepositoryTest {
     public void 전체조회() {
         // given
         Item item1 = new Item();
-        item1.setName("Protein Bar");
+        item1.getProduct().addItem(item1);
+        itemRepository.save(item1);
+        item1.getProduct().setName("Protein Bar");
         item1.setPrice(2000);
         item1.setStockQuantity(50);
-        item1.setImgUrl("https://www.example.com/proteinbar");
-        itemRepository.save(item1);
+        item1.getProduct().setImgUrl("https://www.example.com/proteinbar");
         
         Item item2 = new Item();
-        item2.setName("Protein Shake");
+        item2.getProduct().addItem(item2);
+        itemRepository.save(item2);
+        item2.getProduct().setName("Protein Shake");
         item2.setPrice(2500);
         item2.setStockQuantity(30);
-        item2.setImgUrl("https://www.example.com/proteinshake");
-        itemRepository.save(item2);
+        item2.getProduct().setImgUrl("https://www.example.com/proteinshake");
         
         // when
         List<Item> itemList = itemRepository.findAll();
