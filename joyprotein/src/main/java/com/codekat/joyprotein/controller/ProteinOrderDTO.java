@@ -8,6 +8,6 @@ import lombok.Setter;
 public class ProteinOrderDTO {
     private int quantity;
     private int weight;
-    private String tastCode;
+    private String tasteCode;
     private Long id;
 }

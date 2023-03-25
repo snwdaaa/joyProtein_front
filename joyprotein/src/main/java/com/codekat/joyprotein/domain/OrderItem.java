@@ -9,6 +9,8 @@ import javax.persistence.ManyToOne;
 
 
 import com.codekat.joyprotein.domain.items.Item;
+import com.codekat.joyprotein.domain.items.Protein;
+import com.codekat.joyprotein.repository.TasteRepository;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -20,7 +22,8 @@ public class OrderItem {
     @Id @GeneratedValue
     @Column(name = "orderItem_id")
     private Long id;
-
+    
+    private String name;
     private int price;
     private int quantity;
 
@@ -44,6 +47,9 @@ public class OrderItem {
         orderItem.quantity = quantity;
         orderItem.price = price;
         item.removeStock(quantity);
+        if (item instanceof Protein) {
+            orderItem.setName(item.getProduct().getName()+ " (맛: "+TasteRepository.getTaste(((Protein) item).getTasteCode()) + ", 용량: "+ ((Protein) item).getWeight() + "g)");
+        }
         return orderItem;
     }
 

@@ -7,11 +7,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.codekat.joyprotein.domain.*;
-import com.codekat.joyprotein.domain.items.Item;
+import com.codekat.joyprotein.domain.items.*;
 import com.codekat.joyprotein.repository.ItemRepository;
 import com.codekat.joyprotein.repository.MemberRepository;
 import com.codekat.joyprotein.repository.OrderItemRepository;
 import com.codekat.joyprotein.repository.OrderRepository;
+import com.codekat.joyprotein.repository.TasteRepository;
 
 import lombok.RequiredArgsConstructor;
 
@@ -31,7 +32,8 @@ public class OrderService {
         if (item == null) {
         throw new IllegalArgumentException("Item does not exist with id: " + itemId);
         }
-        OrderItem orderItem = OrderItem.createOrderItem(item, count, item.getPrice()); // undo
+        OrderItem orderItem = OrderItem.createOrderItem(item, count, item.getPrice());
+        // orderItem.setName(item.getProduct().getName()+ " 맛: "+TasteRepository.getTaste(((Protein) item).getTasteCode()) + "용량: "+ ((Protein) item).getWeight()/1000 + "kg");
         orderItemRepository.save(orderItem);
         Order order = Order.createOrder(member, orderItem);
         orderRepository.save(order);

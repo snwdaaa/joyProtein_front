@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import com.codekat.joyprotein.domain.Member;
 import com.codekat.joyprotein.domain.items.Item;
+import com.codekat.joyprotein.domain.items.Product;
 import com.codekat.joyprotein.service.ItemService;
 import com.codekat.joyprotein.service.MemberService;
 
@@ -27,12 +28,6 @@ public class HomeController {
     @GetMapping("/")
     public String home() {
         return "home";
-    }
-    @GetMapping("/protein")
-    public String protein(Model model) {
-        List<Item> items = itemService.findItems();
-        model.addAttribute("items", items);
-        return "items/protein";
     }
 
     @GetMapping("/login")

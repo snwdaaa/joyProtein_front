@@ -11,6 +11,7 @@ import com.codekat.joyprotein.domain.items.Product;
 import com.codekat.joyprotein.domain.items.Protein;
 import com.codekat.joyprotein.repository.ItemRepository;
 import com.codekat.joyprotein.repository.ProductRepository;
+import com.codekat.joyprotein.repository.TasteRepository;
 
 import lombok.RequiredArgsConstructor;
 
@@ -20,6 +21,7 @@ import lombok.RequiredArgsConstructor;
 public class ItemService {
     private final ItemRepository itemRepository;
     private final ProductRepository productRepository;
+    private TasteRepository tasteRepository;
 
     @Transactional
     public Long saveItem(Item item){
@@ -42,7 +44,7 @@ public class ItemService {
         Item result;
         try {
             result = product.getItems().stream()
-            .filter(item -> item instanceof Protein && ((Protein)item).getWeight() == 1000 && ((Protein)item).getTasteCode().equals("11111"))
+            .filter(item -> item instanceof Protein && ((Protein) item).getWeight() == weight && ((Protein) item).getTasteCode().equals(tasteCode))
             .collect(Collectors.toList()).get(0);
         } catch (Exception e) {
             throw new Exception("no such option");

@@ -13,7 +13,6 @@ import lombok.*;
 @Setter
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE) // 상속 구현 전략 선택
-@DiscriminatorColumn(name = "dtype")
 public class Product {
     @Id @GeneratedValue
     @Column(name = "product_id")

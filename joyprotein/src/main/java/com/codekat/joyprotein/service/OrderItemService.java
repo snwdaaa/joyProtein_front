@@ -18,11 +18,12 @@ public class OrderItemService {
     private final OrderItemRepository orderItemRepository;
     private final MemberRepository memberRepository;
 
-    public void addItemToCart(Long memberId, Item item, int count) throws Exception{
+    public OrderItem addItemToCart(Long memberId, Item item, int count) throws Exception{
         Cart cart = memberRepository.findOne(memberId).getCart();
         OrderItem orderItem = OrderItem.createOrderItem(item, count, item.getPrice());
-        orderItemRepository.save(orderItem);
+        Long orderItemId = orderItemRepository.save(orderItem);
         cart.addOrderItem(orderItem);
+        return orderItemRepository.findOne(orderItemId);
     }
 
     public void removeItemFromCart(Long memberId, Long OrderItemId){
