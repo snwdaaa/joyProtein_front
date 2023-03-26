@@ -21,3 +21,10 @@ spring:
                 hibernate: 
                     dialect: org.hibernate.dialect.H2Dialect
         database-platform: org.hibernate.dialect.H2Dialect
+
+server:
+  servlet:
+    session:
+      cookie:
+        http-only: true
+        same-site: strict

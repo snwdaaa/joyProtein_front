@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>JoyProtein 인공지능 상담원</title>
+</head>
+<body>
+    <h1>동현프로틴 인공지능 상담원</h1>
+    <h4>조동현의 창업 프로젝트</h4>
+    <form method="post" action="/chat">
+        <textarea name="message" placeholder="Type your message here..."></textarea>
+        <button type="submit">Send</button>
+    </form>
+    <hr>
+    <h3>Server's response:</h3>
+    <p th:text="${message}"></p>
+</body>
+</html>

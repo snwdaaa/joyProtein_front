@@ -12,7 +12,6 @@ import com.codekat.joyprotein.repository.ItemRepository;
 import com.codekat.joyprotein.repository.MemberRepository;
 import com.codekat.joyprotein.repository.OrderItemRepository;
 import com.codekat.joyprotein.repository.OrderRepository;
-import com.codekat.joyprotein.repository.TasteRepository;
 
 import lombok.RequiredArgsConstructor;
 
