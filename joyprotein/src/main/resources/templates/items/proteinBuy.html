@@ -1,9 +1,20 @@
 <head th:replace="fragments/header :: header" />
+
+<script type="importmap">
+    {
+        "imports": 
+        {
+            "three": "../../three/build/three.module.js",
+            "gltfLoader": "../../three/examples/jsm/loaders/GLTFLoader.js"
+        }    
+    }
+</script>
+
 <div class="container">
     <div th:replace="fragments/bodyHeader :: bodyHeader" />
     <form method="post">
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-6" id="viewer" style="width:50px; height:500px; padding:10px">
                 <!--<img th:src="${product.imgUrl}" alt="product Image" class="img-fluid">-->
                 <script type="module" src="../3dviewer.js"></script>
             </div>
