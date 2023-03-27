@@ -1,10 +1,24 @@
 <head th:replace="fragments/header :: header" />
+
+<!-- three.js 모듈 가져오기 -->
+<script type="importmap">
+    {
+        "imports" : 
+        {
+            "three" : "../../../../node_modules/three/build/three.module.js",
+            "gltfloader" : "../../../../node_modules/three/examples/jsm/loaders/GLTFLoader.js"
+        }
+    }
+</script>
+
+
 <div class="container">
     <div th:replace="fragments/bodyHeader :: bodyHeader" />
     <form method="post">
         <div class="row">
             <div class="col-md-6">
-                <img th:src="${product.imgUrl}" alt="product Image" class="img-fluid">
+                <!--<img th:src="${product.imgUrl}" alt="product Image" class="img-fluid">-->
+                <script type="module" src="3dviewer.js"></script>
             </div>
             <div class="col-md-6">
                 <h2 th:text="${product.name}"></h2>
